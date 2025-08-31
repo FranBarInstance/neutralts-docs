@@ -164,13 +164,11 @@
 <a href="#163" id="163">163</a>
 <a href="#164" id="164">164</a>
 <a href="#165" id="165">165</a>
-<a href="#166" id="166">166</a>
-<a href="#167" id="167">167</a></pre></div><pre class="rust"><code><span class="comment">// pyo3 = { version = "0.25.1", features = [] }
+<a href="#166" id="166">166</a></pre></div><pre class="rust"><code><span class="comment">// pyo3 = { version = "0.26.0", features = [] }
 
 </span><span class="kw">use crate</span>::{bif::BifError, Value};
 <span class="kw">use </span>pyo3::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span>pyo3::types::{PyList, PyModule};
-<span class="kw">use </span>pyo3::PyObject;
 <span class="kw">use </span>std::path::Path;
 <span class="kw">use </span>std::env;
 <span class="kw">use </span>std::process::Command;
@@ -189,9 +187,9 @@
             <span class="self">Self</span>::setup_venv(venv)<span class="question-mark">?</span>;
         }
 
-        pyo3::prepare_freethreaded_python();
+        Python::initialize();
 
-        Python::with_gil(|py| -&gt; PyResult&lt;Value&gt; {
+        Python::attach(|py| -&gt; PyResult&lt;Value&gt; {
             <span class="kw">let </span>params = <span class="self">Self</span>::prepare_python_params(py, params_value)<span class="question-mark">?</span>;
             <span class="self">Self</span>::setup_python_path(py, file)<span class="question-mark">?</span>;
             <span class="self">Self</span>::execute_python_callback(py, file, callback_name, params, schema)
@@ -259,14 +257,14 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">fn </span>prepare_python_params&lt;<span class="lifetime">'py</span>&gt;(py: Python&lt;<span class="lifetime">'py</span>&gt;, params_value: <span class="kw-2">&amp;</span>Value) -&gt; PyResult&lt;PyObject&gt; {
+    <span class="kw">fn </span>prepare_python_params&lt;<span class="lifetime">'py</span>&gt;(py: Python&lt;<span class="lifetime">'py</span>&gt;, params_value: <span class="kw-2">&amp;</span>Value) -&gt; PyResult&lt;Py&lt;PyAny&gt;&gt; {
         <span class="kw">let </span>params_json = serde_json::to_string(params_value).map_err(|e| {
             pyo3::exceptions::PyValueError::new_err(<span class="macro">format!</span>(<span class="string">"Failed to serialize params: {}"</span>, e))
         })<span class="question-mark">?</span>;
         <span class="kw">let </span>json_mod = PyModule::import(py, <span class="string">"json"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>loads = json_mod.getattr(<span class="string">"loads"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>py_obj = loads.call1((params_json,))<span class="question-mark">?</span>;
-        <span class="kw">let </span>py_object: PyObject = py_obj.extract()<span class="question-mark">?</span>;
+        <span class="kw">let </span>py_object: Py&lt;PyAny&gt; = py_obj.extract()<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(py_object)
     }
 
@@ -289,7 +287,7 @@
         py: Python&lt;<span class="lifetime">'py</span>&gt;,
         file: <span class="kw-2">&amp;</span>str,
         callback_name: <span class="kw-2">&amp;</span>str,
-        params: PyObject,
+        params: Py&lt;PyAny&gt;,
         schema: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Value&gt;,
     ) -&gt; PyResult&lt;Value&gt; {
         <span class="kw">let </span>module_name = <span class="self">Self</span>::extract_module_name(file)<span class="question-mark">?</span>;
@@ -307,7 +305,7 @@
             ))
         })<span class="question-mark">?</span>;
         <span class="kw">let </span>result_any = callback_func.call1((params,))<span class="question-mark">?</span>;
-        <span class="kw">let </span>result_obj: PyObject = result_any.extract()<span class="question-mark">?</span>;
+        <span class="kw">let </span>result_obj: Py&lt;PyAny&gt; = result_any.extract()<span class="question-mark">?</span>;
         <span class="self">Self</span>::convert_python_result_to_json(py, result_obj)
     }
 
@@ -323,7 +321,7 @@
             })
     }
 
-    <span class="kw">fn </span>convert_python_result_to_json&lt;<span class="lifetime">'py</span>&gt;(py: Python&lt;<span class="lifetime">'py</span>&gt;, result: PyObject) -&gt; PyResult&lt;Value&gt; {
+    <span class="kw">fn </span>convert_python_result_to_json&lt;<span class="lifetime">'py</span>&gt;(py: Python&lt;<span class="lifetime">'py</span>&gt;, result: Py&lt;PyAny&gt;) -&gt; PyResult&lt;Value&gt; {
         <span class="kw">let </span>json_module = PyModule::import(py, <span class="string">"json"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>json_dumps = json_module.getattr(<span class="string">"dumps"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>json_string: String = json_dumps.call1((result,))<span class="question-mark">?</span>.extract()<span class="question-mark">?</span>;

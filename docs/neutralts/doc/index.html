@@ -2167,8 +2167,9 @@ Hello</code></pre></div><h3 id="flags-3"><a class="doc-anchor" href="#flags-3">Â
 <p>Example Object:</p>
 <div class="example-wrap"><pre class="language-json"><code>{
     &quot;engine&quot;: &quot;Python&quot;,          // Optional, default &quot;Python&quot;
-    &quot;file&quot;: &quot;script.py&quot;,         // Required, path to Python script
+    &quot;file&quot;: &quot;script.py&quot;,         // Required, path to script
     &quot;schema&quot;: false              // Optional, default false
+    &quot;venv&quot;: &quot;/path/to/.env&quot;      // Optional, default none
     &quot;params&quot;: {},                // Optional, parameters passed to the script
     &quot;callback&quot;: &quot;main&quot;,          // Optional, default &quot;main&quot;
     &quot;template&quot;: &quot;template.ntpl&quot;  // Optional, template to process the result

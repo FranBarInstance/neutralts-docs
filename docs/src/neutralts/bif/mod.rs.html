@@ -419,7 +419,26 @@
 <a href="#418" id="418">418</a>
 <a href="#419" id="419">419</a>
 <a href="#420" id="420">420</a>
-<a href="#421" id="421">421</a></pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
+<a href="#421" id="421">421</a>
+<a href="#422" id="422">422</a>
+<a href="#423" id="423">423</a>
+<a href="#424" id="424">424</a>
+<a href="#425" id="425">425</a>
+<a href="#426" id="426">426</a>
+<a href="#427" id="427">427</a>
+<a href="#428" id="428">428</a>
+<a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
+<a href="#431" id="431">431</a>
+<a href="#432" id="432">432</a>
+<a href="#433" id="433">433</a>
+<a href="#434" id="434">434</a>
+<a href="#435" id="435">435</a>
+<a href="#436" id="436">436</a>
+<a href="#437" id="437">437</a></pre></div><pre class="rust"><code><span class="comment">//
+
+</span><span class="kw">use </span>chrono::Local;
+<span class="kw">use crate</span>::{
     json, Value,
     block_parser::BlockInherit,
     constants::<span class="kw-2">*</span>,
@@ -472,6 +491,7 @@
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>BifError {
     <span class="kw">pub</span>(<span class="kw">crate</span>) msg: String,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) file: String,
     <span class="kw">pub</span>(<span class="kw">crate</span>) name: String,
     <span class="kw">pub</span>(<span class="kw">crate</span>) src: String,
 }
@@ -626,7 +646,18 @@
                 <span class="kw">let </span>show_error = <span class="self">self</span>.shared.schema[<span class="string">"config"</span>][<span class="string">"error"</span>][<span class="string">"show"</span>]
                     .as_bool()
                     .unwrap();
-                <span class="kw">let </span>error_line = <span class="macro">format!</span>(<span class="string">"Error ({}) {} src: {}"</span>, e.name, e.msg, e.src);
+
+                <span class="kw">let </span>datetime = Local::now().format(<span class="string">"%Y-%m-%d %H:%M:%S"</span>).to_string();
+
+                <span class="kw">let </span>error_line = <span class="macro">format!</span>(
+                    <span class="string">"[{}] Error ({}) {} file~: ({}) src: {}"</span>,
+                    datetime,
+                    e.name,
+                    e.msg,
+                    e.file,
+                    e.src
+                );
+
                 <span class="kw">let </span>error_line = error_line.replace([<span class="string">'\n'</span>, <span class="string">'\r'</span>], <span class="string">" "</span>);
 
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(Value::Array(errors)) = <span class="self">self</span>.shared.schema.get_mut(<span class="string">"__error"</span>) {
@@ -835,6 +866,7 @@
         BifError {
             msg: msg.to_string(),
             name: <span class="self">self</span>.alias.clone(),
+            file: <span class="self">self</span>.inherit.current_file.clone(),
             src: <span class="self">self</span>.raw.to_string(),
         }
     }

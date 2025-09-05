@@ -7,14 +7,6 @@ Neutral TS is a **safe, modular, language-agnostic template engine** built in Ru
 It works as a **native Rust library** or via **IPC** for other languages like Python and PHP.
 With Neutral TS you can reuse the **same template across multiple languages** with consistent results.
 
-In this simple PWA example, all three use exactly the same templates.
-
-- [Rust PWA example](https://gitlab.com/neutralfw/neutralts/-/tree/master/web-app/rust)
-- [Python PWA example IPC](https://gitlab.com/neutralfw/neutralts/-/tree/master/web-app/python)
-- [Python PWA example Package](https://github.com/FranBar1966/neutraltemplate/tree/master/examples)
-- [PHP PWA example](https://gitlab.com/neutralfw/neutralts/-/tree/master/web-app/php)
-- [Template](https://gitlab.com/neutralfw/neutralts/-/tree/master/web-app/neutral)
-
 (*) For non-Rust requires an IPC server that you can download from the [IPC repository](https://github.com/FranBarInstance/neutral-ipc) - [IPC server](https://github.com/FranBarInstance/neutral-ipc/releases). Alternatively in Python you can use [PYPI Package](https://pypi.org/project/neutraltemplate/)
 
 The documentation of the **web template** engine is here: [template engine doc](https://franbarinstance.github.io/neutralts-docs/docs/neutralts/doc/) and **Rust** documentation here: [rust doc](https://docs.rs/neutralts/latest/neutralts/).
@@ -60,6 +52,7 @@ It allows you to create templates compatible with any system and any programming
 * Efficient
 * Inheritance
 * Cache modular and !cache
+* Objects
 * JS fetch
 * Parse files
 * Embed files
@@ -85,8 +78,6 @@ Imagine a database. It has a server, and different programming languages access 
 Similarly, Neutral TS has an IPC server, and each programming language has a client. No matter where you run the template, the result will always be the same.
 
 Thanks to this, and to its modular and parameterizable design, it is possible to create utilities or plugins that will work everywhere. For example, you can develop tools to create forms or form fields and create your own libraries of "snippets" for repetitive tasks.
-
-A small example of a plugin: [countries form field](https://gitlab.com/neutralfw/neutralts/-/tree/master/examples/countries-form-field) and another one more practical: [plugin build-form](https://gitlab.com/neutralfw/neutralts/-/tree/master/plugins/build-form)
 
 Localization
 ------------

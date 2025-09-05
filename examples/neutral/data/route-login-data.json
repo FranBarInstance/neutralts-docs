@@ -1,0 +1,12 @@
+{
+    "data": {
+        "currentRoute": {
+            "title": "Sign in",
+            "description": "Neutral TS Web APP",
+            "icon": "icon-sign-in",
+            "meta": {
+                "name1": "content1"
+            }
+        }
+    }
+}

@@ -1,8 +1,13 @@
 **/target
 /pruebas
 .directory
-.vscode
+**/.env*
+**/.venv*
+**/venv*
+/.vscode
 /src/main.rs
 /helpers
 __pycache__/
 *.py[cod]
+
+/examples/php

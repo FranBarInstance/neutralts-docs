@@ -9,5 +9,8 @@
 /helpers
 __pycache__/
 *.py[cod]
-
 /examples/php
+/examples/rust
+/examples/java
+/examples/node
+/examples/go

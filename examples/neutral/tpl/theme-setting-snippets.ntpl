@@ -114,7 +114,7 @@
     navbar
 *:}
 {:snip; navbar >>
-    {:allow; valid-navbar >> {:;site->navbar:} :}{:else; primary :}
+    {:;site->navbar:}{:else; primary :}
 :}
 
 {:*

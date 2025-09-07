@@ -42,6 +42,7 @@
                 "en",
                 "es"
             ],
+            "navbar": "primary",
             "validThemes": [
                 "flatly",
                 "sketchy",

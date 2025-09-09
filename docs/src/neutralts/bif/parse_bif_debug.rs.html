@@ -99,9 +99,27 @@
 <a href="#98" id="98">98</a>
 <a href="#99" id="99">99</a>
 <a href="#100" id="100">100</a>
-<a href="#101" id="101">101</a></pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">"../../doc/bif-debug.md"</span>)]
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a></pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">"../../doc/bif-debug.md"</span>)]
 
-</span><span class="kw">use crate</span>::{bif::constants::<span class="kw-2">*</span>, bif::Bif, bif::BifError, constants::<span class="kw-2">*</span>};
+</span><span class="kw">use crate</span>::{
+    bif::constants::<span class="kw-2">*</span>,
+    bif::Bif,
+    bif::BifError,
+    constants::<span class="kw-2">*</span>,
+    utils::<span class="kw-2">*</span>,
+};
 <span class="kw">use </span>std::fs;
 <span class="kw">use </span>std::path::Path;
 <span class="kw">use </span>std::time::{SystemTime, Duration};
@@ -111,7 +129,7 @@
         {:debug; data-&gt;key :}
     */
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_bif_debug(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), BifError&gt; {
-        <span class="kw">if </span><span class="self">self</span>.mod_filter || <span class="self">self</span>.mod_scope {
+        <span class="kw">if </span><span class="self">self</span>.mod_scope {
             <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="self">self</span>.bif_error(BIF_ERROR_MODIFIER_NOT_ALLOWED));
         }
 
@@ -161,6 +179,12 @@
             },
             <span class="prelude-val">None </span>=&gt; <span class="macro">format!</span>(<span class="string">"Undefined: '{}'"</span>, <span class="self">self</span>.code),
         };
+
+        <span class="kw">if </span><span class="self">self</span>.mod_filter {
+            <span class="comment">// unescape_chars for prevent double encoding
+            </span><span class="kw">let </span>tmp = unescape_chars(<span class="kw-2">&amp;</span><span class="self">self</span>.out, <span class="bool-val">true</span>);
+            <span class="self">self</span>.out = escape_chars(<span class="kw-2">&amp;</span>tmp, <span class="bool-val">true</span>);
+        }
 
         <span class="prelude-val">Ok</span>(())
     }

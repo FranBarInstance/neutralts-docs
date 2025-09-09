@@ -384,7 +384,11 @@
 <a href="#383" id="383">383</a>
 <a href="#384" id="384">384</a>
 <a href="#385" id="385">385</a>
-<a href="#386" id="386">386</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fs;
+<a href="#386" id="386">386</a>
+<a href="#387" id="387">387</a>
+<a href="#388" id="388">388</a>
+<a href="#389" id="389">389</a>
+<a href="#390" id="390">390</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fs;
 <span class="kw">use </span>std::path::Path;
 <span class="kw">use </span>std::time::{Duration, Instant};
 <span class="kw">use </span>serde_json::{json, Value};
@@ -460,7 +464,7 @@
             }
         };
 
-        merge_schema(<span class="kw-2">&amp;mut </span>default_schema, <span class="kw-2">&amp;</span>schema);
+        update_schema(<span class="kw-2">&amp;mut </span>default_schema, <span class="kw-2">&amp;</span>schema);
         <span class="kw">let </span>shared = Shared::new(default_schema.clone());
 
         <span class="prelude-val">Ok</span>(Template {
@@ -530,7 +534,7 @@
                 <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">"Is not a valid JSON file"</span>.to_string());
             }
         };
-        merge_schema(<span class="kw-2">&amp;mut </span><span class="self">self</span>.schema, <span class="kw-2">&amp;</span>schema_value);
+        update_schema(<span class="kw-2">&amp;mut </span><span class="self">self</span>.schema, <span class="kw-2">&amp;</span>schema_value);
 
         <span class="prelude-val">Ok</span>(())
     }
@@ -552,7 +556,7 @@
                 <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">"Is not a valid JSON string"</span>.to_string());
             }
         };
-        merge_schema(<span class="kw-2">&amp;mut </span><span class="self">self</span>.schema, <span class="kw-2">&amp;</span>schema_value);
+        update_schema(<span class="kw-2">&amp;mut </span><span class="self">self</span>.schema, <span class="kw-2">&amp;</span>schema_value);
 
         <span class="prelude-val">Ok</span>(())
     }
@@ -563,7 +567,7 @@
     ///
     /// * `schema` - The JSON Value to be merged with the current schema.
     </span><span class="kw">pub fn </span>merge_schema_value(<span class="kw-2">&amp;mut </span><span class="self">self</span>, schema: Value) {
-        merge_schema(<span class="kw-2">&amp;mut </span><span class="self">self</span>.schema, <span class="kw-2">&amp;</span>schema);
+        update_schema(<span class="kw-2">&amp;mut </span><span class="self">self</span>.schema, <span class="kw-2">&amp;</span>schema);
     }
 
     <span class="doccomment">/// Renders the template content.
@@ -621,6 +625,10 @@
             }
         } <span class="kw">else </span>{
             inherit.current_dir = <span class="self">self</span>.shared.working_dir.clone();
+        }
+
+        <span class="kw">if </span>!<span class="self">self</span>.shared.debug_file.is_empty() {
+            <span class="macro">eprintln!</span>(<span class="string">"WARNING: config-&gt;debug_file is not empty: {} (Remember to remove this in production)"</span>, <span class="self">self</span>.shared.debug_file);
         }
 
         inherit

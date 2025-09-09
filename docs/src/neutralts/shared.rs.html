@@ -79,7 +79,13 @@
 <a href="#78" id="78">78</a>
 <a href="#79" id="79">79</a>
 <a href="#80" id="80">80</a>
-<a href="#81" id="81">81</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde_json::Value;
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a>
+<a href="#86" id="86">86</a>
+<a href="#87" id="87">87</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde_json::Value;
 <span class="kw">use </span>std::env;
 <span class="kw">use </span><span class="kw">crate</span>::utils::{get_from_key, is_bool_key};
 
@@ -106,6 +112,8 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) cache_disable: bool,
     <span class="kw">pub</span>(<span class="kw">crate</span>) disable_js: bool,
     <span class="kw">pub</span>(<span class="kw">crate</span>) already_js: bool,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) debug_expire: u64,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) debug_file: String,
     <span class="kw">pub</span>(<span class="kw">crate</span>) working_dir: String,
 }
 
@@ -123,6 +131,8 @@
         <span class="kw">let </span>cache_on_cookies= is_bool_key(<span class="kw-2">&amp;</span>schema[<span class="string">"config"</span>], <span class="string">"cache_on_cookies"</span>);
         <span class="kw">let </span>cache_disable= is_bool_key(<span class="kw-2">&amp;</span>schema[<span class="string">"config"</span>], <span class="string">"cache_disable"</span>);
         <span class="kw">let </span>disable_js= is_bool_key(<span class="kw-2">&amp;</span>schema[<span class="string">"config"</span>], <span class="string">"disable_js"</span>);
+        <span class="kw">let </span>debug_expire = schema[<span class="string">"config"</span>][<span class="string">"debug_expire"</span>].as_u64().unwrap();
+        <span class="kw">let </span>debug_file= get_from_key(<span class="kw-2">&amp;</span>schema[<span class="string">"config"</span>], <span class="string">"debug_file"</span>);
         <span class="kw">let </span><span class="kw-2">mut </span>filter_bifs = <span class="bool-val">false</span>;
 
         <span class="kw">if </span>!cache_disable {
@@ -156,6 +166,8 @@
             cache_disable,
             disable_js,
             already_js: <span class="bool-val">false</span>,
+            debug_expire,
+            debug_file,
             working_dir,
         }
     }

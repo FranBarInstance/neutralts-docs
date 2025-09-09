@@ -703,7 +703,42 @@
 <a href="#702" id="702">702</a>
 <a href="#703" id="703">703</a>
 <a href="#704" id="704">704</a>
-<a href="#705" id="705">705</a></pre></div><pre class="rust"><code>
+<a href="#705" id="705">705</a>
+<a href="#706" id="706">706</a>
+<a href="#707" id="707">707</a>
+<a href="#708" id="708">708</a>
+<a href="#709" id="709">709</a>
+<a href="#710" id="710">710</a>
+<a href="#711" id="711">711</a>
+<a href="#712" id="712">712</a>
+<a href="#713" id="713">713</a>
+<a href="#714" id="714">714</a>
+<a href="#715" id="715">715</a>
+<a href="#716" id="716">716</a>
+<a href="#717" id="717">717</a>
+<a href="#718" id="718">718</a>
+<a href="#719" id="719">719</a>
+<a href="#720" id="720">720</a>
+<a href="#721" id="721">721</a>
+<a href="#722" id="722">722</a>
+<a href="#723" id="723">723</a>
+<a href="#724" id="724">724</a>
+<a href="#725" id="725">725</a>
+<a href="#726" id="726">726</a>
+<a href="#727" id="727">727</a>
+<a href="#728" id="728">728</a>
+<a href="#729" id="729">729</a>
+<a href="#730" id="730">730</a>
+<a href="#731" id="731">731</a>
+<a href="#732" id="732">732</a>
+<a href="#733" id="733">733</a>
+<a href="#734" id="734">734</a>
+<a href="#735" id="735">735</a>
+<a href="#736" id="736">736</a>
+<a href="#737" id="737">737</a>
+<a href="#738" id="738">738</a>
+<a href="#739" id="739">739</a>
+<a href="#740" id="740">740</a></pre></div><pre class="rust"><code>
 <span class="kw">use </span>serde_json::Value;
 <span class="kw">use </span><span class="kw">crate</span>::constants::<span class="kw-2">*</span>;
 
@@ -753,6 +788,41 @@
         }
         (a, b) =&gt; <span class="kw-2">*</span>a = b.clone(),
     }
+}
+
+<span class="doccomment">/// Merge schema and update some keys
+///
+/// This is a thin wrapper around `merge_schema` that additionally:
+/// 1. Copies the value of the header key `requested-with-ajax` (all lower-case) into the
+///    variants `Requested-With-Ajax` (Pascal-Case) and `REQUESTED-WITH-AJAX` (upper-case),
+///    or vice-versa, depending on which variant is present in the incoming schema.
+/// 2. Overwrites the top-level `version` field with the compile-time constant `VERSION`.
+///
+/// The three header variants are created so that downstream code can read the header
+/// regardless of the casing rules enforced by the environment (HTTP servers, proxies, etc.).
+///
+/// # Arguments
+/// * `a` – the target `Value` (must be an `Object`) that will receive the merge result.
+/// * `b` – the source `Value` (must be an `Object`) whose contents are merged into `a`.
+///
+</span><span class="kw">pub fn </span>update_schema(a: <span class="kw-2">&amp;mut </span>Value, b: <span class="kw-2">&amp;</span>Value) {
+    merge_schema(a, b);
+
+    <span class="comment">// Different environments may ignore or add capitalization in headers
+    </span><span class="kw">let </span>headers = <span class="kw-2">&amp;</span>b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>];
+    <span class="kw">if </span>headers.get(<span class="string">"requested-with-ajax"</span>).is_some() {
+        a[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"Requested-With-Ajax"</span>] = b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"requested-with-ajax"</span>].clone();
+        a[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"REQUESTED-WITH-AJAX"</span>] = b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"requested-with-ajax"</span>].clone();
+    } <span class="kw">else if </span>headers.get(<span class="string">"Requested-With-Ajax"</span>).is_some() {
+        a[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"requested-with-ajax"</span>] = b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"Requested-With-Ajax"</span>].clone();
+        a[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"REQUESTED-WITH-AJAX"</span>] = b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"Requested-With-Ajax"</span>].clone();
+    } <span class="kw">else if </span>headers.get(<span class="string">"REQUESTED-WITH-AJAX"</span>).is_some() {
+        a[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"requested-with-ajax"</span>] = b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"REQUESTED-WITH-AJAX"</span>].clone();
+        a[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"Requested-With-Ajax"</span>] = b[<span class="string">"data"</span>][<span class="string">"CONTEXT"</span>][<span class="string">"HEADERS"</span>][<span class="string">"REQUESTED-WITH-AJAX"</span>].clone();
+    }
+
+    <span class="comment">// Update version
+    </span>a[<span class="string">"version"</span>] = VERSION.to_string().to_string().into();
 }
 
 <span class="doccomment">/// Extract same level blocks positions.

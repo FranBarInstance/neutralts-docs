@@ -435,7 +435,9 @@
 <a href="#434" id="434">434</a>
 <a href="#435" id="435">435</a>
 <a href="#436" id="436">436</a>
-<a href="#437" id="437">437</a></pre></div><pre class="rust"><code><span class="comment">//
+<a href="#437" id="437">437</a>
+<a href="#438" id="438">438</a>
+<a href="#439" id="439">439</a></pre></div><pre class="rust"><code><span class="comment">//
 
 </span><span class="kw">use </span>chrono::Local;
 <span class="kw">use crate</span>::{
@@ -485,6 +487,7 @@
 <span class="kw">mod </span>parse_bif_unknown;
 <span class="kw">mod </span>parse_bif_var;
 <span class="kw">mod </span>parse_bif_obj;
+<span class="kw">mod </span>parse_bif_debug;
 
 <span class="kw">mod </span>exec_python;
 <span class="kw">pub use </span>exec_python::PythonExecutor;
@@ -637,6 +640,7 @@
             <span class="string">"sum" </span>=&gt; result = <span class="self">self</span>.parse_bif_sum(),
             <span class="string">"trans" </span>=&gt; result = <span class="self">self</span>.parse_bif_trans(),
             <span class="string">"obj" </span>=&gt; result = <span class="self">self</span>.parse_bif_obj(),
+            <span class="string">"debug" </span>=&gt; result = <span class="self">self</span>.parse_bif_debug(),
             <span class="kw">_ </span>=&gt; result = <span class="self">self</span>.parse_bif_unknown(),
         }
 

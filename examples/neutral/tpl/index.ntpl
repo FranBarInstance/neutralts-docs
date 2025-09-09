@@ -64,7 +64,7 @@
 {:snip; current-theme-spin :}
 
 
-{:bool; CONTEXT->HEADERS->Requested-With-Ajax >>
+{:bool; CONTEXT->HEADERS->requested-with-ajax >>
 
     {:*
         Render ajax

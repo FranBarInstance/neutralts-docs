@@ -5,6 +5,6 @@
     ------
 *:}
 
-{:cache; /120/{:;CONTEXT->HEADERS->Requested-With-Ajax:}{:;error->code:}{:;error->text:}{:;error->param:}/ >>
+{:cache; /120/{:;CONTEXT->HEADERS->requested-with-ajax:}{:;error->code:}{:;error->text:}{:;error->param:}/ >>
     {:^include; {:flg; require :} >> #/error.ntpl :}
 :}

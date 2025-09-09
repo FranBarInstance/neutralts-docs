@@ -5,6 +5,6 @@
     -----
 *:}
 
-{:cache; /120/{:;CONTEXT->HEADERS->Requested-With-Ajax:}{:;CONTEXT->SESSION:}/ >>
+{:cache; /120/{:;CONTEXT->HEADERS->requested-with-ajaxx:}{:;CONTEXT->SESSION:}/ >>
     {:^include; {:flg; require :} >> #/index.ntpl :}
 :}

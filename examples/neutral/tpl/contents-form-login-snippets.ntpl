@@ -1,6 +1,6 @@
 {:* Neutral TS - License in the terms described in the LICENSE file. *:}
 
-{:!bool; CONTEXT->HEADERS->Requested-With-Ajax >>
+{:!bool; CONTEXT->HEADERS->requested-with-ajax >>
     {:redirect; js:redirect:top >> / :}
 :}
 

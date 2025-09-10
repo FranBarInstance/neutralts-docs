@@ -1,4 +1,7 @@
-"""template and response"""
+"""
+    Template and response
+    See: https://github.com/FranBarInstance/neutralts-docs
+"""
 
 import json
 

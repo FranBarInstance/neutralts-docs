@@ -1,4 +1,7 @@
-"""constants"""
+"""
+    Constants
+    See: https://github.com/FranBarInstance/neutralts-docs
+"""
 
 import os
 

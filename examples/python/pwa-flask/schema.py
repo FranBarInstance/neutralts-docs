@@ -1,4 +1,7 @@
-"""fill schema"""
+"""
+    Fill schema
+    See: https://github.com/FranBarInstance/neutralts-docs
+"""
 
 import json
 from http.cookies import SimpleCookie

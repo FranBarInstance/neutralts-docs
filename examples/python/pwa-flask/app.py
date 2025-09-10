@@ -1,4 +1,7 @@
-"""Neutral TS Python package example with Flask"""
+"""
+    Neutral TS Python package example with Flask
+    See: https://github.com/FranBarInstance/neutralts-docs
+"""
 
 import os
 

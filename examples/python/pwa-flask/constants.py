@@ -8,10 +8,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Use cached templates
-# TEMPLATE_ROUTER = BASE_DIR + "/../../neutral/tpl/cache.ntpl"
+TEMPLATE_ROUTER = BASE_DIR + "/../../neutral/tpl/cache.ntpl"
 
 # Uncomment for no cached templates
-TEMPLATE_ROUTER = BASE_DIR + "/../../neutral/tpl/index.ntpl"
+# TEMPLATE_ROUTER = BASE_DIR + "/../../neutral/tpl/index.ntpl"
 
 # HTTP errors template
 TEMPLATE_ERROR = BASE_DIR + "/../../neutral/tpl/cache_error.ntpl"

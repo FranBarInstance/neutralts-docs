@@ -2,7 +2,7 @@
 
 import os
 
-from constants import STATIC_FOLDER
+from constants import STATIC_FOLDER, SIMULATE_SECRET_KEY
 from flask import Flask, request, send_from_directory
 from schema import Schema
 from template import Template
@@ -19,7 +19,7 @@ def catch_all(route):
     to create a simple view/route you wouldn't need a function or view, just create
     the contents-[route]-snippets.ntpl template file.
 
-    The /simulate-... routes don't have a handle and are handled here.
+    The /simulate-... and /help routes don't have a handle and are handled here.
     """
 
     # Serve static files directly
@@ -58,7 +58,7 @@ def form_login_post(route):
     # Fake login, any user, password: 1234
     if schema.schema["data"]["CONTEXT"]["POST"]["passwd"] == "1234":
         schema.schema["data"]["send_form_login_fails"] = None
-        schema.schema["data"]["CONTEXT"]["SESSION"] = "69bdd1e4b4047d8f4e3"
+        schema.schema["data"]["CONTEXT"]["SESSION"] = SIMULATE_SECRET_KEY
     else:
         schema.schema["data"]["send_form_login_fails"] = True
 

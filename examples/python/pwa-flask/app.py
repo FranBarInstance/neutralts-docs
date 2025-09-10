@@ -10,14 +10,16 @@ from template import Template
 app = Flask(__name__)
 
 # Catch all route
-@app.route('/<path:route>', methods=['GET', 'POST'])
+@app.route('/<path:route>', methods=['GET'])
 def catch_all(route):
     """
     Default handle.
 
-    Neutral handles HTTP errors, to prevent arbitrary routes contents-[route]-snippets.ntpl
-    must exist, to create a simple view/route you wouldn't need a function or view, just create
+    To prevent arbitrary routes contents-[route]-snippets.ntpl must exist,
+    to create a simple view/route you wouldn't need a function or view, just create
     the contents-[route]-snippets.ntpl template file.
+
+    The /simulate-... routes don't have a handle and are handled here.
     """
 
     # Serve static files directly
@@ -30,19 +32,26 @@ def catch_all(route):
     template = Template(schema.get())
     return template.render()
 
-@app.route('/login/<action>', defaults={'route': 'form-login'}, methods=['POST'])
+# Container for /form-login (form-login is loaded via ajax)
+@app.route('/login', defaults={'route': 'login'}, methods=['GET'])
 def login(route):
-    """route login"""
+    """Handle GET request login route"""
     schema = Schema(request, route)
-    schema.schema["data"]["send_form_login"] = 1
-    schema.schema["data"]["CONTEXT"]["SESSION"] = "69bdd1e4b4047d8f4e3"
     template = Template(schema.get())
     return template.render()
 
-# Fake login
+# Display form login
+@app.route('/form-login', defaults={'route': 'form-login'}, methods=['GET'])
+def form_login_get(route):
+    """Handle GET request for form-login route"""
+    schema = Schema(request, route)
+    template = Template(schema.get())
+    return template.render()
+
+# Process login form in POST (Fake login)
 @app.route('/form-login', defaults={'route': 'form-login'}, methods=['POST'])
-def form_login(route):
-    """route form-login"""
+def form_login_post(route):
+    """Handle POST request for form-login route"""
     schema = Schema(request, route)
     schema.schema["data"]["send_form_login"] = 1
 
@@ -56,10 +65,18 @@ def form_login(route):
     template = Template(schema.get())
     return template.render()
 
-# Home
+# Logout
+@app.route('/logout', defaults={'route': 'logout'}, methods=['GET'])
+def logout(route):
+    """Handle logout route"""
+    schema = Schema(request, route)
+    template = Template(schema.get())
+    return template.render()
+
+# Home GET and POST
 @app.route('/', defaults={'route': 'home'}, methods=['GET', 'POST'])
 def home(route):
-    """route home"""
+    """Handle GET and POST request home route"""
     schema = Schema(request, route)
     template = Template(schema.get())
     return template.render()

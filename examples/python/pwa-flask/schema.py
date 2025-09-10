@@ -2,8 +2,10 @@
 
 import json
 from http.cookies import SimpleCookie
-from flask import request
+
 from constants import DEFAULT_SCHEMA, LANG_KEY, THEME_KEY
+from flask import request
+
 
 # It is important to distinguish between data coming from the user and data
 # coming from the application. "CONTEXT" has some security measures such as escaping.

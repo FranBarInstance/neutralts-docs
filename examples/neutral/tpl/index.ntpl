@@ -77,3 +77,13 @@
     *:}
     {:^include; {:flg; require :} >> #/theme.ntpl :}
 :}
+
+{:*
+    Debug if enabled
+*:}
+{:eval; {:!debug; :} >>
+Debug schema data:
+    <pre>{:&debug; data :}</pre>
+Debug schema local data:
+    <pre>{:&debug; local::data :}</pre>
+:}

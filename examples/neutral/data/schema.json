@@ -8,7 +8,9 @@
         "cache_on_cookies": true,
         "cache_disable": false,
         "disable_js": true,
-        "filter_all": false
+        "filter_all": false,
+        "debug_expire": 36000,
+        "debug_file": "/tmp/enable-neutral-debug-hsd21lou61b4xp"
     },
     "inherit": {
         "locale": {

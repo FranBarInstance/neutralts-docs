@@ -1,0 +1,16 @@
+{
+  "name": "neutralts-node-examples",
+  "version": "1.0.0",
+  "description": "Neutral TS Node.js examples",
+  "main": "index.js",
+  "scripts": {
+    "start": "node helloworld/helloworld.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cookie-parser": "^1.4.6"
+  },
+  "keywords": ["neutralts", "template", "node"],
+  "author": "FranBarInstance",
+  "license": "MIT"
+}

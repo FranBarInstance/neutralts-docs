@@ -40,14 +40,6 @@ def catch_all(route):
     template = Template(schema.get())
     return template.render()
 
-# Container for /form-login (form-login is loaded via ajax)
-@app.route('/login', defaults={'route': 'login'}, methods=['GET'])
-def login(route):
-    """Handle GET request login route"""
-    schema = Schema(request, route)
-    template = Template(schema.get())
-    return template.render()
-
 # Display form login
 @app.route('/form-login', defaults={'route': 'form-login'}, methods=['GET'])
 def form_login_get(route):

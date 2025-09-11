@@ -22,7 +22,12 @@ def catch_all(route):
     to create a simple view/route you wouldn't need a function or view, just create
     the contents-[route]-snippets.ntpl template file.
 
-    The /simulate-... and /help routes don't have a handle and are handled here.
+    Following routes do not have a handler and are dispatched here:
+    /simulate-...
+    /help
+    /login
+
+    /login is a container for /form-login (/form-login is loaded via ajax).
     """
 
     # Serve static files directly

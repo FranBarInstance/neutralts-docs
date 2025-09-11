@@ -11,3 +11,13 @@ Run:
 ```
 python helloworldipc.py
 ```
+
+Links
+-----
+
+Neutral TS template engine.
+
+- [Template docs](https://github.com/FranBarInstance/neutralts-docs/docs/neutralts/doc/)
+- [Repository](https://github.com/FranBarInstance/neutralts)
+- [Crate](https://crates.io/crates/neutralts)
+- [Examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples)

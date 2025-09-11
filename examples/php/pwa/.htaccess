@@ -1,0 +1,9 @@
+# Apache rewrite rules
+RewriteEngine On
+
+# Serve static files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Redirect all other requests to index.php
+RewriteRule ^ index.php [L]

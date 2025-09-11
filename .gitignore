@@ -9,7 +9,6 @@
 /helpers
 __pycache__/
 *.py[cod]
-/examples/php
 /examples/java
 /examples/node
 /examples/go

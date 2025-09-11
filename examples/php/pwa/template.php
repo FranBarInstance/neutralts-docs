@@ -6,7 +6,7 @@
  */
 
 require_once __DIR__ . '/constants.php';
-require_once __DIR__ . '/../ipc-client/NeutralIpcTemplate.php';
+require_once __DIR__ . '/../neutral_ipc_template/NeutralIpcTemplate.php';
 
 class Template
 {

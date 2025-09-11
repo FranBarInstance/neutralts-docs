@@ -5,7 +5,13 @@ https://github.com/FranBarInstance/neutralts-docs/
 
 import json  # Required to pass the schema as json to NeutralTemplate
 import os  # Required to determine the path of the .ntpl template
+import sys
 
+# Add parent directory to sys.path to find sibling packages
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
+# pylint: disable=import-error
+# pylint: disable=wrong-import-position
 # Import NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc/clients
 from neutral_ipc_template import NeutralIpcTemplate
 

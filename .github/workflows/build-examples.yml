@@ -1,0 +1,27 @@
+name: Build Examples Archive
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-examples:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create examples archive
+      run: |
+        TAG_NAME="${GITHUB_REF#refs/tags/}"
+        zip -r "examples-$TAG_NAME.zip" examples/ -x "*.git*" "*.DS_Store"
+
+    - name: Create Release and Upload Asset
+      uses: softprops/action-gh-release@v1
+      with:
+        files: examples-$TAG_NAME.zip
+        body: "Examples archive for version $TAG_NAME"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

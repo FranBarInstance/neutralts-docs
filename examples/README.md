@@ -7,6 +7,8 @@ Neutral TS is a web template system that allows using the same templates with an
 
 ## Available Examples
 
+Some examples require the IPC server: [Neutra TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
+
 ### Rust Examples
 - **helloworld**: Basic "Hello World" example with Rust
 - **pwa-actix**: PWA implementation with Actix web framework

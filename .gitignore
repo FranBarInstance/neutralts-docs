@@ -9,5 +9,3 @@
 /helpers
 __pycache__/
 *.py[cod]
-/examples/java
-/examples/go

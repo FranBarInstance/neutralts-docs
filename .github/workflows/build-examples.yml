@@ -11,6 +11,9 @@ permissions:
 jobs:
   build-examples:
     runs-on: ubuntu-latest
+    env:
+      ZIP_FILE: ""
+      TAG_NAME: ""
 
     steps:
     - name: Checkout code

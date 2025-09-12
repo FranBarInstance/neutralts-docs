@@ -17,11 +17,15 @@ jobs:
       run: |
         TAG_NAME="${GITHUB_REF#refs/tags/}"
         zip -r "examples-$TAG_NAME.zip" examples/ -x "*.git*" "*.DS_Store"
+        echo "ZIP_FILE=examples-$TAG_NAME.zip" >> $GITHUB_ENV
+
+    - name: List files (para debug)
+      run: ls -la
 
     - name: Create Release and Upload Asset
       uses: softprops/action-gh-release@v1
       with:
-        files: examples-$TAG_NAME.zip
-        body: "Examples archive for version $TAG_NAME"
+        files: ${{ env.ZIP_FILE }}
+        body: "Examples archive for version ${{ env.TAG_NAME }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

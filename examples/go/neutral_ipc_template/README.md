@@ -1,4 +1,3 @@
-````markdown
 # Neutral TS IPC Client Go
 
 **IPC Client Go is experimental.**

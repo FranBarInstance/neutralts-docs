@@ -12,7 +12,7 @@ sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 # pylint: disable=import-error
 # pylint: disable=wrong-import-position
-# Import NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc/clients
+# Import NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc
 from neutral_ipc_template import NeutralIpcTemplate
 
 # The schema contains among other things the data and variables for the template

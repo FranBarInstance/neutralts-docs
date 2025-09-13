@@ -9,7 +9,7 @@ Example
 -------
 
 ```php
-// Include NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc/clients
+// Include NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc
 include 'neutral_ipc_template/NeutralIpcTemplate.php';
 
 // The schema contains the data and variables for the template

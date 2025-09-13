@@ -4,7 +4,7 @@ Neutral TS Hello World Node.js example
 Command line Hello World Node.js example.
 
 - Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
-- Requires the Node.js IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc/clients)
+- Requires the Node.js IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
 Navigate to the examples/node directory and then:
 

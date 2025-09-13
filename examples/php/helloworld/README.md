@@ -5,7 +5,7 @@ Command line Hello World package example
 
 Requirements:
 - IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
-- PHP IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc/clients)
+- PHP IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 - PHP 7.4 or higher
 - JSON extension enabled
 

@@ -4,7 +4,7 @@ Neutral TS Hello World Go example
 Command line Hello World example using Go.
 
 - Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
-- Requires the Go IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc/clients)
+- Requires the Go IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
 Navigate to the examples/go/helloworld directory and then:
 

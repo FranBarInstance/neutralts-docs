@@ -4,7 +4,7 @@ Neutral TS Go PWA example
 Example of using Neutral Template System with Web APP and different themes.
 
 - Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
-- Requires the Go IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc/clients)
+- Requires the Go IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
 Navigate to the examples/go/pwa directory and then:
 

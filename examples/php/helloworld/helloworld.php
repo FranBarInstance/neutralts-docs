@@ -4,7 +4,7 @@
  * https://github.com/FranBarInstance/neutralts-docs/
  */
 
-# Include NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc/clients
+# Include NeutralIpcTemplate: https://github.com/FranBarInstance/neutral-ipc
 include '../neutral_ipc_template/NeutralIpcTemplate.php';
 
 # The schema contains among other things the data and variables for the template

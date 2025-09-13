@@ -22,7 +22,7 @@ http://127.0.0.1:8000/
 
 Neutral TS template engine.
 
-- [Template docs](https://github.com/FranBarInstance/neutralts-docs/docs/neutralts/doc/)
+- [Template docs](https://franbarinstance.github.io/neutralts-docs/docs/neutralts/doc/)
 - [Repository](https://github.com/FranBarInstance/neutralts)
 - [Crate](https://crates.io/crates/neutralts)
 - [Examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples)

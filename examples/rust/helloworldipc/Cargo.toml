@@ -1,0 +1,8 @@
+[package]
+name = "helloworldipc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+neutralipcrs = "0.0.0-dev1"
+serde_json = "1.0"

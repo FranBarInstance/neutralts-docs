@@ -40,7 +40,7 @@ How it works
 Neutral TS supports two integration approaches:
 
 ### **Available Modes:**
-- **Rust**: Native library (crate)
+- **Rust**: Native library ([crate](https://crates.io/crates/neutralts)) **or** IPC client ([crate](https://crates.io/crates/neutralipcrs)) + IPC server
 - **Python**: Native package **or** IPC client + IPC server
 - **Other languages** (PHP, etc.): IPC client + IPC server required
 
@@ -61,6 +61,8 @@ Uses the exact same client-server mechanism as a database:
 - **Same principle**: Lightweight client + Powerful server
 - **Universal protocol**: TCP + text/JSON (supported by all languages)
 - **Consistent results**: Same engine processes everything, guaranteeing identical output
+- **Minimal dependencies**: IPC clients are extremely lightweight with minimal external dependencies
+- **Easy updates**: No application recompilation needed - simply update the IPC server for engine improvements
 
 ### **Security Advantage:**
 The IPC architecture provides important security benefits:
@@ -68,9 +70,19 @@ The IPC architecture provides important security benefits:
 - **Reduced attack surface**: Main application protected from template engine vulnerabilities
 - **Resource control**: Memory and CPU limits can be enforced at server level
 - **Crash containment**: Template engine failures don't affect the main application
+- **Zero-downtime updates**: IPC server can be updated independently without restarting client applications
 
 ### **Key Advantage:**
 Just like an SQL query returns the same data from any language, a Neutral TS template returns the same HTML from Python, PHP, Rust... with added security isolation.
+
+### **Performance Consideration:**
+The IPC approach introduces performance overhead due to inter-process communication. The impact varies depending on:
+
+- Application type
+- Programming language
+- Network latency
+
+For most web applications, the security and interoperability benefits compensate for the performance overhead.
 
 ### **IPC Components:**
 - **IPC Server**: Universal standalone application (written in Rust) for all languages - download from: [IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
@@ -450,6 +462,8 @@ Or for array:
 Native use (Rust)
 -----------------
 
+Alternatively, you can use: [Neutral TS Rust IPC Client](https://crates.io/crates/neutralipcrs)
+
 ```text
 use neutralts::Template;
 use serde_json::json;
@@ -468,6 +482,8 @@ let status_param = template.get_status_param();
 
 // act accordingly at this point according to your framework
 ```
+[Rust examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/rust)
+
 
 Python - Package
 ----------------
@@ -493,12 +509,14 @@ status_param = template.get_status_param()
 
 # act accordingly at this point according to your framework
 ```
+[Python examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/python)
+
 
 Python - IPC
 ------------
 
 - Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
-- Requires the Python IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc/clients)
+- Requires the Python IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
 ```text
 from NeutralIpcTemplate import NeutralIpcTemplate
@@ -517,33 +535,35 @@ status_param = template.get_status_param()
 
 # act accordingly at this point according to your framework
 ```
+[Python examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/python)
+
 
 PHP
 ---
 
 - Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
-- Requires the Python IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc/clients)
+- Requires the PHP IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
+[PHP examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/php)
 
-```text
-include 'NeutralIpcTemplate.php';
+Node.js
+-------
 
-$template = new NeutralIpcTemplate("file.ntpl", $schema);
-$contents = $template->render();
+- Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
+- Requires the Node IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
-// e.g.: 200
-$status_code = $template->get_status_code();
+[Node.js examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/node)
 
-// e.g.: OK
-$status_text = $template->get_status_text();
+Go
+--
 
-// empty if no error
-$status_param = $template->get_status_param();
+- Requires the IPC server: [Neutral TS IPC Server](https://github.com/FranBarInstance/neutral-ipc/releases)
+- Requires the Go IPC client: [Neutral TS IPC Clients](https://github.com/FranBarInstance/neutral-ipc)
 
-// act accordingly at this point according to your framework
-```
+[Go examples](https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/go)
 
-Neutral TS template engine.
+Neutral TS template engine
+--------------------------
 
 - [Rust docs](https://docs.rs/neutralts/latest/neutralts/)
 - [Template docs](https://franbarinstance.github.io/neutralts-docs/docs/neutralts/doc/)

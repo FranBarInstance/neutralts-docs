@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="neutral"><title>neutralts - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="neutralts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../static.files/storage-59e33391.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../neutralts/index.html">neutralts</a><span class="version">1.3.0</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#web-template-engine---neutral-ts" title="Web Template Engine - Neutral TS">Web Template Engine - Neutral TS</a><ul><li><a href="#template-engine---features" title="Template Engine - Features">Template Engine - Features</a></li><li><a href="#how-it-works" title="How it works">How it works</a></li><li><a href="#localization" title="Localization">Localization</a></li><li><a href="#bif-layout-build-in-function" title="Bif layout (Build-in function)">Bif layout (Build-in function)</a></li><li><a href="#data" title="Data">Data</a></li><li><a href="#snippets" title="Snippets">Snippets</a></li><li><a href="#cache" title="Cache">Cache</a></li><li><a href="#fetch" title="Fetch">Fetch</a></li><li><a href="#object" title="Object">Object</a></li><li><a href="#debug" title="Debug">Debug</a></li><li><a href="#web-template---example" title="Web template - example">Web template - example</a></li><li><a href="#usage" title="Usage">Usage</a></li><li><a href="#native-use-rust" title="Native use (Rust)">Native use (Rust)</a></li><li><a href="#python---package" title="Python - Package">Python - Package</a></li><li><a href="#python---ipc" title="Python - IPC">Python - IPC</a></li><li><a href="#php" title="PHP">PHP</a></li></ul></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#macros" title="Macros">Macros</a></li><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#enums" title="Enums">Enums</a></li><li><a href="#constants" title="Constants">Constants</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>neutralts</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/neutralts/lib.rs.html#1-84">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p><img src="https://raw.githubusercontent.com/FranBarInstance/neutralts/refs/heads/master/top-neutralts.png" alt="neutral" /></p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="neutral"><title>neutralts - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="neutralts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0 (29483883e 2025-08-04)" data-channel="1.89.0" data-search-js="search-92309212.js" data-settings-js="settings-5514c975.js" ><script src="../static.files/storage-4e99c027.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../neutralts/index.html">neutralts</a><span class="version">1.3.1</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#web-template-engine---neutral-ts" title="Web Template Engine - Neutral TS">Web Template Engine - Neutral TS</a><ul><li><a href="#template-engine---features" title="Template Engine - Features">Template Engine - Features</a></li><li><a href="#how-it-works" title="How it works">How it works</a></li><li><a href="#localization" title="Localization">Localization</a></li><li><a href="#bif-layout-build-in-function" title="Bif layout (Build-in function)">Bif layout (Build-in function)</a></li><li><a href="#data" title="Data">Data</a></li><li><a href="#snippets" title="Snippets">Snippets</a></li><li><a href="#cache" title="Cache">Cache</a></li><li><a href="#fetch" title="Fetch">Fetch</a></li><li><a href="#object" title="Object">Object</a></li><li><a href="#debug" title="Debug">Debug</a></li><li><a href="#web-template---example" title="Web template - example">Web template - example</a></li><li><a href="#usage" title="Usage">Usage</a></li><li><a href="#native-use-rust" title="Native use (Rust)">Native use (Rust)</a></li><li><a href="#python---package" title="Python - Package">Python - Package</a></li><li><a href="#python---ipc" title="Python - IPC">Python - IPC</a></li><li><a href="#php" title="PHP">PHP</a></li><li><a href="#nodejs" title="Node.js">Node.js</a></li><li><a href="#go" title="Go">Go</a></li><li><a href="#neutral-ts-template-engine" title="Neutral TS template engine">Neutral TS template engine</a></li></ul></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#macros" title="Macros">Macros</a></li><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#enums" title="Enums">Enums</a></li><li><a href="#constants" title="Constants">Constants</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>neutralts</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/neutralts/lib.rs.html#1-84">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p><img src="https://raw.githubusercontent.com/FranBarInstance/neutralts/refs/heads/master/top-neutralts.png" alt="neutral" /></p>
 <h2 id="web-template-engine---neutral-ts"><a class="doc-anchor" href="#web-template-engine---neutral-ts">§</a>Web Template Engine - Neutral TS</h2>
 <p>Neutral TS is a <strong>safe, modular, language-agnostic template engine</strong> built in Rust. It works as a <strong>native Rust library</strong> or via <strong>IPC</strong> for other languages like Python and PHP. With Neutral TS you can reuse the <strong>same template across multiple languages</strong> with consistent results.</p>
 <p>Examples for <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/rust">Rust</a>, <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/python">Python</a>, <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/php">PHP</a>, <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/node">Node.js</a> and <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/go">Go</a> here: <a href="https://github.com/FranBarInstance/neutralts-docs/releases">download</a>. All PWA <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples">examples</a> use the same template: <a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/neutral">Neutral templates</a>.</p>
@@ -30,7 +30,7 @@
 <p>Neutral TS supports two integration approaches:</p>
 <h4 id="available-modes"><a class="doc-anchor" href="#available-modes">§</a><strong>Available Modes:</strong></h4>
 <ul>
-<li><strong>Rust</strong>: Native library (crate)</li>
+<li><strong>Rust</strong>: Native library (<a href="https://crates.io/crates/neutralts">crate</a>) <strong>or</strong> IPC client (<a href="https://crates.io/crates/neutralipcrs">crate</a>) + IPC server</li>
 <li><strong>Python</strong>: Native package <strong>or</strong> IPC client + IPC server</li>
 <li><strong>Other languages</strong> (PHP, etc.): IPC client + IPC server required</li>
 </ul>
@@ -53,6 +53,8 @@
 <li><strong>Same principle</strong>: Lightweight client + Powerful server</li>
 <li><strong>Universal protocol</strong>: TCP + text/JSON (supported by all languages)</li>
 <li><strong>Consistent results</strong>: Same engine processes everything, guaranteeing identical output</li>
+<li><strong>Minimal dependencies</strong>: IPC clients are extremely lightweight with minimal external dependencies</li>
+<li><strong>Easy updates</strong>: No application recompilation needed - simply update the IPC server for engine improvements</li>
 </ul>
 <h4 id="security-advantage"><a class="doc-anchor" href="#security-advantage">§</a><strong>Security Advantage:</strong></h4>
 <p>The IPC architecture provides important security benefits:</p>
@@ -61,9 +63,18 @@
 <li><strong>Reduced attack surface</strong>: Main application protected from template engine vulnerabilities</li>
 <li><strong>Resource control</strong>: Memory and CPU limits can be enforced at server level</li>
 <li><strong>Crash containment</strong>: Template engine failures don’t affect the main application</li>
+<li><strong>Zero-downtime updates</strong>: IPC server can be updated independently without restarting client applications</li>
 </ul>
 <h4 id="key-advantage"><a class="doc-anchor" href="#key-advantage">§</a><strong>Key Advantage:</strong></h4>
 <p>Just like an SQL query returns the same data from any language, a Neutral TS template returns the same HTML from Python, PHP, Rust… with added security isolation.</p>
+<h4 id="performance-consideration"><a class="doc-anchor" href="#performance-consideration">§</a><strong>Performance Consideration:</strong></h4>
+<p>The IPC approach introduces performance overhead due to inter-process communication. The impact varies depending on:</p>
+<ul>
+<li>Application type</li>
+<li>Programming language</li>
+<li>Network latency</li>
+</ul>
+<p>For most web applications, the security and interoperability benefits compensate for the performance overhead.</p>
 <h4 id="ipc-components"><a class="doc-anchor" href="#ipc-components">§</a><strong>IPC Components:</strong></h4>
 <ul>
 <li><strong>IPC Server</strong>: Universal standalone application (written in Rust) for all languages - download from: <a href="https://github.com/FranBarInstance/neutral-ipc/releases">IPC Server</a></li>
@@ -332,7 +343,9 @@
 <p>Template file.ntpl:</p>
 <div class="example-wrap"><pre class="language-text"><code>{:;site_name:}</code></pre></div>
 <p>Or for array:</p>
-<div class="example-wrap"><pre class="language-text"><code>{:;site-&gt;name:}</code></pre></div><h3 id="native-use-rust"><a class="doc-anchor" href="#native-use-rust">§</a>Native use (Rust)</h3><div class="example-wrap"><pre class="language-text"><code>use neutralts::Template;
+<div class="example-wrap"><pre class="language-text"><code>{:;site-&gt;name:}</code></pre></div><h3 id="native-use-rust"><a class="doc-anchor" href="#native-use-rust">§</a>Native use (Rust)</h3>
+<p>Alternatively, you can use: <a href="https://crates.io/crates/neutralipcrs">Neutral TS Rust IPC Client</a></p>
+<div class="example-wrap"><pre class="language-text"><code>use neutralts::Template;
 use serde_json::json;
 
 let template = Template::from_file_value(&quot;file.ntpl&quot;, schema).unwrap();
@@ -347,7 +360,9 @@ let status_text = template.get_status_text();
 // empty if no error
 let status_param = template.get_status_param();
 
-// act accordingly at this point according to your framework</code></pre></div><h3 id="python---package"><a class="doc-anchor" href="#python---package">§</a>Python - Package</h3><div class="example-wrap"><pre class="language-text"><code>pip install neutraltemplate</code></pre></div><div class="example-wrap"><pre class="language-text"><code>from neutraltemplate import NeutralTemplate
+// act accordingly at this point according to your framework</code></pre></div>
+<p><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/rust">Rust examples</a></p>
+<h3 id="python---package"><a class="doc-anchor" href="#python---package">§</a>Python - Package</h3><div class="example-wrap"><pre class="language-text"><code>pip install neutraltemplate</code></pre></div><div class="example-wrap"><pre class="language-text"><code>from neutraltemplate import NeutralTemplate
 
 template = NeutralTemplate(&quot;file.ntpl&quot;, schema)
 contents = template.render()
@@ -361,10 +376,12 @@ status_text = template.get_status_text()
 # empty if no error
 status_param = template.get_status_param()
 
-# act accordingly at this point according to your framework</code></pre></div><h3 id="python---ipc"><a class="doc-anchor" href="#python---ipc">§</a>Python - IPC</h3>
+# act accordingly at this point according to your framework</code></pre></div>
+<p><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/python">Python examples</a></p>
+<h3 id="python---ipc"><a class="doc-anchor" href="#python---ipc">§</a>Python - IPC</h3>
 <ul>
 <li>Requires the IPC server: <a href="https://github.com/FranBarInstance/neutral-ipc/releases">Neutral TS IPC Server</a></li>
-<li>Requires the Python IPC client: <a href="https://github.com/FranBarInstance/neutral-ipc/clients">Neutral TS IPC Clients</a></li>
+<li>Requires the Python IPC client: <a href="https://github.com/FranBarInstance/neutral-ipc">Neutral TS IPC Clients</a></li>
 </ul>
 <div class="example-wrap"><pre class="language-text"><code>from NeutralIpcTemplate import NeutralIpcTemplate
 
@@ -380,27 +397,27 @@ status_text = template.get_status_text()
 # empty if no error
 status_param = template.get_status_param()
 
-# act accordingly at this point according to your framework</code></pre></div><h3 id="php"><a class="doc-anchor" href="#php">§</a>PHP</h3>
+# act accordingly at this point according to your framework</code></pre></div>
+<p><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/python">Python examples</a></p>
+<h3 id="php"><a class="doc-anchor" href="#php">§</a>PHP</h3>
 <ul>
 <li>Requires the IPC server: <a href="https://github.com/FranBarInstance/neutral-ipc/releases">Neutral TS IPC Server</a></li>
-<li>Requires the Python IPC client: <a href="https://github.com/FranBarInstance/neutral-ipc/clients">Neutral TS IPC Clients</a></li>
+<li>Requires the PHP IPC client: <a href="https://github.com/FranBarInstance/neutral-ipc">Neutral TS IPC Clients</a></li>
 </ul>
-<div class="example-wrap"><pre class="language-text"><code>include &#39;NeutralIpcTemplate.php&#39;;
-
-$template = new NeutralIpcTemplate(&quot;file.ntpl&quot;, $schema);
-$contents = $template-&gt;render();
-
-// e.g.: 200
-$status_code = $template-&gt;get_status_code();
-
-// e.g.: OK
-$status_text = $template-&gt;get_status_text();
-
-// empty if no error
-$status_param = $template-&gt;get_status_param();
-
-// act accordingly at this point according to your framework</code></pre></div>
-<p>Neutral TS template engine.</p>
+<p><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/php">PHP examples</a></p>
+<h3 id="nodejs"><a class="doc-anchor" href="#nodejs">§</a>Node.js</h3>
+<ul>
+<li>Requires the IPC server: <a href="https://github.com/FranBarInstance/neutral-ipc/releases">Neutral TS IPC Server</a></li>
+<li>Requires the Node IPC client: <a href="https://github.com/FranBarInstance/neutral-ipc">Neutral TS IPC Clients</a></li>
+</ul>
+<p><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/node">Node.js examples</a></p>
+<h3 id="go"><a class="doc-anchor" href="#go">§</a>Go</h3>
+<ul>
+<li>Requires the IPC server: <a href="https://github.com/FranBarInstance/neutral-ipc/releases">Neutral TS IPC Server</a></li>
+<li>Requires the Go IPC client: <a href="https://github.com/FranBarInstance/neutral-ipc">Neutral TS IPC Clients</a></li>
+</ul>
+<p><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples/go">Go examples</a></p>
+<h3 id="neutral-ts-template-engine"><a class="doc-anchor" href="#neutral-ts-template-engine">§</a>Neutral TS template engine</h3>
 <ul>
 <li><a href="https://docs.rs/neutralts/latest/neutralts/">Rust docs</a></li>
 <li><a href="https://franbarinstance.github.io/neutralts-docs/docs/neutralts/doc/">Template docs</a></li>
@@ -411,4 +428,4 @@ $status_param = $template-&gt;get_status_param();
 <li><a href="https://pypi.org/project/neutraltemplate/">PYPI Package</a></li>
 <li><a href="https://github.com/FranBarInstance/neutralts-docs/tree/master/examples">Examples</a></li>
 </ul>
-</div></details><h2 id="reexports" class="section-header">Re-exports<a href="#reexports" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><code>pub use <a class="mod" href="constants/index.html" title="mod neutralts::constants">constants</a>::*;</code></div></li><li><div class="item-name"><code>pub use <a class="mod" href="utils/index.html" title="mod neutralts::utils">utils</a>::*;</code></div></li></ul><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="bif/index.html" title="mod neutralts::bif">bif</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="block_parser/index.html" title="mod neutralts::block_parser">block_<wbr>parser</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="constants/index.html" title="mod neutralts::constants">constants</a></div></li><li><div class="item-name"><a class="mod" href="default_json/index.html" title="mod neutralts::default_json">default_<wbr>json</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="doc/index.html" title="mod neutralts::doc">doc</a></div><div class="desc docblock-short">neutral</div></li><li><div class="item-name"><a class="mod" href="macros/index.html" title="mod neutralts::macros">macros</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="shared/index.html" title="mod neutralts::shared">shared</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="template/index.html" title="mod neutralts::template">template</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="test_helpers/index.html" title="mod neutralts::test_helpers">test_<wbr>helpers</a></div></li><li><div class="item-name"><a class="mod" href="utils/index.html" title="mod neutralts::utils">utils</a></div></li></ul><h2 id="macros" class="section-header">Macros<a href="#macros" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="macro" href="macro.json.html" title="macro neutralts::json">json</a></div><div class="desc docblock-short">Construct a <code>serde_json::Value</code> from a JSON literal.</div></li></ul><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Template.html" title="struct neutralts::Template">Template</a></div></li></ul><h2 id="enums" class="section-header">Enums<a href="#enums" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.Value.html" title="enum neutralts::Value">Value</a></div><div class="desc docblock-short">Represents any valid JSON value.</div></li></ul><h2 id="constants" class="section-header">Constants<a href="#constants" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.DEFAULT.html" title="constant neutralts::DEFAULT">DEFAULT</a></div></li></ul></section></div></main></body></html>
+</div></details><h2 id="reexports" class="section-header">Re-exports<a href="#reexports" class="anchor">§</a></h2><dl class="item-table reexports"><dt><code>pub use <a class="mod" href="constants/index.html" title="mod neutralts::constants">constants</a>::*;</code></dt><dt><code>pub use <a class="mod" href="utils/index.html" title="mod neutralts::utils">utils</a>::*;</code></dt></dl><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="bif/index.html" title="mod neutralts::bif">bif</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dt><a class="mod" href="block_parser/index.html" title="mod neutralts::block_parser">block_<wbr>parser</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dt><a class="mod" href="constants/index.html" title="mod neutralts::constants">constants</a></dt><dt><a class="mod" href="default_json/index.html" title="mod neutralts::default_json">default_<wbr>json</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dt><a class="mod" href="doc/index.html" title="mod neutralts::doc">doc</a></dt><dd>neutral</dd><dt><a class="mod" href="macros/index.html" title="mod neutralts::macros">macros</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dt><a class="mod" href="shared/index.html" title="mod neutralts::shared">shared</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dt><a class="mod" href="template/index.html" title="mod neutralts::template">template</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dt><a class="mod" href="test_helpers/index.html" title="mod neutralts::test_helpers">test_<wbr>helpers</a></dt><dt><a class="mod" href="utils/index.html" title="mod neutralts::utils">utils</a></dt></dl><h2 id="macros" class="section-header">Macros<a href="#macros" class="anchor">§</a></h2><dl class="item-table"><dt><a class="macro" href="macro.json.html" title="macro neutralts::json">json</a></dt><dd>Construct a <code>serde_json::Value</code> from a JSON literal.</dd></dl><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.Template.html" title="struct neutralts::Template">Template</a></dt></dl><h2 id="enums" class="section-header">Enums<a href="#enums" class="anchor">§</a></h2><dl class="item-table"><dt><a class="enum" href="enum.Value.html" title="enum neutralts::Value">Value</a></dt><dd>Represents any valid JSON value.</dd></dl><h2 id="constants" class="section-header">Constants<a href="#constants" class="anchor">§</a></h2><dl class="item-table"><dt><a class="constant" href="constant.DEFAULT.html" title="constant neutralts::DEFAULT">DEFAULT</a></dt></dl></section></div></main></body></html>

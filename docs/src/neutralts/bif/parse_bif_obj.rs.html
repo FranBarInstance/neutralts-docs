@@ -145,7 +145,7 @@
 <a href=#145 id=145 data-nosnippet>145</a>    <span class="kw">fn </span>parse_obj_values(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: <span class="kw-2">&amp;mut </span>Value, is_recursive_call: bool) {
 <a href=#146 id=146 data-nosnippet>146</a>        <span class="kw">if let </span>Value::Object(map) = value {
 <a href=#147 id=147 data-nosnippet>147</a>            <span class="kw">for </span>(key, val) <span class="kw">in </span>map.iter_mut() {
-<a href=#148 id=148 data-nosnippet>148</a>                <span class="kw">if </span>key == <span class="string">"file" </span>|| key == <span class="string">"template" </span>{
+<a href=#148 id=148 data-nosnippet>148</a>                <span class="kw">if </span>key == <span class="string">"file" </span>|| key == <span class="string">"template" </span>|| key == <span class="string">"venv" </span>{
 <a href=#149 id=149 data-nosnippet>149</a>                    <span class="kw">if let </span>Value::String(s) = val {
 <a href=#150 id=150 data-nosnippet>150</a>                        <span class="kw">if </span>s.contains(BIF_OPEN) {
 <a href=#151 id=151 data-nosnippet>151</a>                            <span class="kw-2">*</span>val = Value::String(<span class="macro">new_child_parse!</span>(<span class="self">self</span>, s, <span class="bool-val">false</span>));

@@ -70,7 +70,7 @@
 <a href=#70 id=70 data-nosnippet>70</a>        <span class="kw">if </span><span class="self">self</span>.mod_filter {
 <a href=#71 id=71 data-nosnippet>71</a>            <span class="comment">// unescape_chars for prevent double encoding
 <a href=#72 id=72 data-nosnippet>72</a>            </span><span class="kw">let </span>tmp = unescape_chars(<span class="kw-2">&amp;</span><span class="self">self</span>.out, <span class="bool-val">true</span>);
-<a href=#73 id=73 data-nosnippet>73</a>            <span class="self">self</span>.out = escape_chars(<span class="kw-2">&amp;</span>tmp, <span class="bool-val">true</span>);
+<a href=#73 id=73 data-nosnippet>73</a>            <span class="self">self</span>.out = escape_chars(<span class="kw-2">&amp;</span>tmp, <span class="bool-val">true</span>).into_owned();
 <a href=#74 id=74 data-nosnippet>74</a>        }
 <a href=#75 id=75 data-nosnippet>75</a>
 <a href=#76 id=76 data-nosnippet>76</a>        <span class="prelude-val">Ok</span>(())

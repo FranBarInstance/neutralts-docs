@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["Template"]};
+window.SIDEBAR_ITEMS = {"fn":["default_schema_template"],"struct":["Template"]};

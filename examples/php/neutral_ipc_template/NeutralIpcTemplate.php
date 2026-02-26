@@ -4,7 +4,7 @@
  * https://github.com/FranBarInstance/neutral-ipc
  */
 
-include 'NeutralIpcConfig.php';
+require_once 'NeutralIpcConfig.php';
 
 class NeutralIpcRecord
 {
@@ -16,9 +16,9 @@ class NeutralIpcRecord
     #
     # \x00              # reserved
     # \x00              # control (action/status) (10 = parse template)
-    # \x00              # content-format 1 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary)
+    # \x00              # content-format 1 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary, 50 = MsgPack)
     # \x00\x00\x00\x00  # content-length 1 big endian byte order
-    # \x00              # content-format 2 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary)
+    # \x00              # content-format 2 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary, 50 = MsgPack)
     # \x00\x00\x00\x00  # content-length 2 big endian byte order (can be zero)
     #
     # All text utf8
@@ -29,6 +29,7 @@ class NeutralIpcRecord
     const CTRL_STATUS_OK      = 0;
     const CTRL_STATUS_KO      = 1;
     const CONTENT_JSON        = 10;
+    const CONTENT_MSGPACK     = 50;
     const CONTENT_PATH        = 20;
     const CONTENT_TEXT        = 30;
     const CONTENT_BIN         = 40;
@@ -61,7 +62,7 @@ class NeutralIpcRecord
 
     public static function encodeRecord($control, $format1, $content1, $format2, $content2)
     {
-        $length1 = strlen($content1);
+        $length1 = is_string($content1) ? strlen($content1) : strlen($content1);
         $length2 = strlen($content2);
         $header  = self::encodeHeader($control, $format1, $length1, $format2, $length2);
         $record  = $header . $content1 . $content2;
@@ -171,18 +172,27 @@ class NeutralIpcTemplate
 {
     protected $template;
     protected $tpltype; // template type CONTENT_PATH (file) or CONTENT_TEXT (raw source)
-    protected $schema;  // array schema or string json schema
+    protected $schema;  // array schema or string json schema or msgpack bytes
+    protected $schemaType; // CONTENT_JSON or CONTENT_MSGPACK
     protected $result = [];
 
-    public function __construct(string $template, mixed $schema, int $tpltype = NeutralIpcRecord::CONTENT_PATH)
+    public function __construct(string $template, mixed $schema, int $tpltype = NeutralIpcRecord::CONTENT_PATH, int $schemaType = NeutralIpcRecord::CONTENT_JSON)
     {
         $this->template = $template;
         $this->tpltype  = $tpltype;
+        $this->schemaType = $schemaType;
 
-        if (is_string($schema)) {
-            $this->schema = $schema;
+        if ($schemaType === NeutralIpcRecord::CONTENT_MSGPACK) {
+            if (is_string($schema)) {
+                $schema = json_decode($schema, true);
+            }
+            $this->schema = msgpack_pack($schema);
         } else {
-            $this->schema = json_encode($schema);
+            if (is_string($schema)) {
+                $this->schema = $schema;
+            } else {
+                $this->schema = json_encode($schema);
+            }
         }
     }
 
@@ -190,7 +200,7 @@ class NeutralIpcTemplate
     {
         $record = new NeutralIpcClient(
             NeutralIpcRecord::CTRL_PARSE_TEMPLATE,
-            NeutralIpcRecord::CONTENT_JSON,
+            $this->schemaType,
             $this->schema,
             $this->tpltype,
             $this->template

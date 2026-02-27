@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="{:obj; … :}"><title>neutralts::bif::parse_bif_obj - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="neutralts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0 (29483883e 2025-08-04)" data-channel="1.89.0" data-search-js="search-92309212.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../neutralts/index.html">neutralts</a><span class="version">1.4.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module parse_<wbr>bif_<wbr>obj</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#obj--" title="{:obj; … :}">{:obj; … :}</a><ul><li><a href="#modifiers" title="Modifiers:">Modifiers:</a></li><li><a href="#no-flags" title="No flags">No flags</a></li><li><a href="#examples" title="Examples">Examples</a></li><li><a href="#limitations" title="Limitations">Limitations</a></li></ul></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In neutralts::<wbr>bif</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">neutralts</a>::<wbr><a href="../index.html">bif</a></div><h1>Module <span>parse_bif_obj</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/neutralts/bif/parse_bif_obj.rs.html#1-171">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="obj--"><a class="doc-anchor" href="#obj--">§</a>{:obj; … :}</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="{:obj; … :}"><title>neutralts::bif::parse_bif_obj - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="neutralts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0 (29483883e 2025-08-04)" data-channel="1.89.0" data-search-js="search-92309212.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../neutralts/index.html">neutralts</a><span class="version">1.4.1</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module parse_<wbr>bif_<wbr>obj</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#obj--" title="{:obj; … :}">{:obj; … :}</a><ul><li><a href="#modifiers" title="Modifiers:">Modifiers:</a></li><li><a href="#no-flags" title="No flags">No flags</a></li><li><a href="#examples" title="Examples">Examples</a></li><li><a href="#limitations" title="Limitations">Limitations</a></li></ul></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In neutralts::<wbr>bif</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">neutralts</a>::<wbr><a href="../index.html">bif</a></div><h1>Module <span>parse_bif_obj</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/neutralts/bif/parse_bif_obj.rs.html#1-252">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="obj--"><a class="doc-anchor" href="#obj--">§</a>{:obj; … :}</h2>
 <p><strong>This feature is experimental.</strong></p>
-<p>Executes a external script (currently only Python) and processes its output. The script receives parameters and can access the template schema.</p>
+<p>Executes an external script (Python or PHP via PHP-FPM) and processes its output. The script receives parameters and can access the template schema.</p>
 <p>JSON obj file</p>
 <div class="example-wrap"><pre class="language-html"><code>{:obj; fileobj.json :}</code></pre></div>
 <p>JSON obj inline:</p>
 <div class="example-wrap"><pre class="language-html"><code>{:obj;
     {
-        &quot;engine&quot;: &quot;Python&quot;,
+        &quot;engine&quot;: &quot;python&quot;,
         &quot;file&quot;: &quot;script.py&quot;,
         &quot;params&quot;: {},
         &quot;callback&quot;: &quot;main&quot;,
@@ -16,7 +16,7 @@
 <p>JSON obj template inline:</p>
 <div class="example-wrap"><pre class="language-html"><code>{:obj;
     {
-        &quot;engine&quot;: &quot;Python&quot;,
+        &quot;engine&quot;: &quot;python&quot;,
         &quot;file&quot;: &quot;script.py&quot;,
         &quot;params&quot;: {},
         &quot;callback&quot;: &quot;main&quot;
@@ -27,29 +27,85 @@
 <p>The idea is to use a script that has its own template to assign values to the variables of that template. In a JSON file, an object with its properties, script to execute, template, etc., is defined.</p>
 <p>Example Object:</p>
 <div class="example-wrap"><pre class="language-json"><code>{
-    &quot;engine&quot;: &quot;Python&quot;,          // Optional, default &quot;Python&quot;
+    &quot;engine&quot;: &quot;python&quot;,          // Optional, &quot;python&quot; (default) or &quot;php&quot;
     &quot;file&quot;: &quot;script.py&quot;,         // Required, path to script
     &quot;schema&quot;: false,             // Optional, default false
-    &quot;venv&quot;: &quot;/path/to/.env&quot;,     // Optional, default none
+    &quot;schema_data&quot;: &quot;__test-nts&quot;, // Optional, default none
+    &quot;venv&quot;: &quot;/path/to/.env&quot;,     // Optional, overrides config default
+    &quot;fpm&quot;: &quot;unix:/run/php/php-fpm.sock&quot;, // Optional for PHP, overrides config default
     &quot;params&quot;: {},                // Optional, parameters passed to the script
     &quot;callback&quot;: &quot;main&quot;,          // Optional, default &quot;main&quot;
     &quot;template&quot;: &quot;template.ntpl&quot;  // Optional, template to process the result
 }</code></pre></div>
-<p>The keys “file”, “params”, “venv” and “template” accept variables <code>{:;varname:}</code></p>
+<p>The keys “file”, “params”, “venv”, “fpm”, “template” and “schema_data” accept variables <code>{:;varname:}</code></p>
+<p>Examples:</p>
+<div class="example-wrap"><pre class="language-json"><code>{
+    &quot;venv&quot;: &quot;{:;VENV_PATH:}&quot;,
+    &quot;fpm&quot;: &quot;{:;PHP_FPM_ENDPOINT:}&quot;
+}</code></pre></div>
 <p>Example Script:</p>
 <div class="example-wrap"><pre class="language-python"><code>def main(params=None):
     schema = globals().get(&#39;__NEUTRAL_SCHEMA__&#39;)
+    schema_data = globals().get(&#39;__NEUTRAL_SCHEMA_DATA__&#39;)
     return {
         &quot;data&quot;: {
             &quot;varname&quot;: &quot;Hello from Python!&quot;
         }
     }</code></pre></div>
 <p><code>__NEUTRAL_SCHEMA__</code> (requires <code>"schema": true</code> in object) is read-only for accessing the schema. Access to <code>__NEUTRAL_SCHEMA__</code> can be slow, it is faster to use parameters.</p>
+<p><code>__NEUTRAL_SCHEMA_DATA__</code> (requires <code>"schema_data": "..."</code>) sends only one resolved value from schema data:</p>
+<ul>
+<li>Global data:
+<ul>
+<li><code>"schema_data": "varname"</code></li>
+<li><code>"schema_data": "varname-&gt;key-&gt;..."</code></li>
+</ul>
+</li>
+<li>Local data:
+<ul>
+<li><code>"schema_data": "local::varname"</code></li>
+<li><code>"schema_data": "local::varname-&gt;key-&gt;..."</code></li>
+</ul>
+</li>
+</ul>
+<p>If the key does not exist, <code>__NEUTRAL_SCHEMA_DATA__</code> is <code>None</code>.</p>
+<p>PHP script example (via PHP-FPM):</p>
+<div class="example-wrap"><pre class="language-php"><code>&lt;?php
+function main($params = []) {
+    $schema = $GLOBALS[&#39;__NEUTRAL_SCHEMA__&#39;] ?? null;
+    $schema_data = $GLOBALS[&#39;__NEUTRAL_SCHEMA_DATA__&#39;] ?? null;
+    return [
+        &quot;data&quot; =&gt; [
+            &quot;varname&quot; =&gt; &quot;Hello from PHP!&quot;
+        ]
+    ];
+}</code></pre></div>
+<p>For PHP:</p>
+<ul>
+<li><code>"engine": "php"</code></li>
+<li><code>"fpm"</code> can be:
+<ul>
+<li><code>"unix:/run/php/php-fpm.sock"</code></li>
+<li><code>"tcp://127.0.0.1:9000"</code></li>
+<li><code>"127.0.0.1:9000"</code></li>
+</ul>
+</li>
+<li>If <code>"fpm"</code> is not set, default is <code>config.obj_php_fpm</code>.</li>
+</ul>
+<p>Global defaults are read from schema config:</p>
+<div class="example-wrap"><pre class="language-json"><code>{
+  &quot;config&quot;: {
+    &quot;obj_python_venv&quot;: &quot;&quot;,
+    &quot;obj_php_venv&quot;: &quot;&quot;,
+    &quot;obj_php_fpm&quot;: &quot;unix:/run/php/php-fpm.sock&quot;
+  }
+}</code></pre></div>
+<p>For distributable objects/plugins, avoid hardcoding <code>"venv"</code> or <code>"fpm"</code> in the object JSON. Let each installation define them in <code>config</code>.</p>
 <p>It must return a dictionary where the variables are set in the format:</p>
 <div class="example-wrap"><pre class="language-text"><code>{
     &quot;data&quot;: {
         &quot;varname&quot;: &quot;value&quot;,
-        &quot;arrname: {
+        &quot;arrname&quot;: {
             &quot;key&quot;: &quot;value&quot;
         }
     }
@@ -88,6 +144,52 @@
         }
     }
 :}</code></pre></div>
+<p>PHP-FPM usage:</p>
+<div class="example-wrap"><pre class="language-html"><code>{:obj;
+    {
+        &quot;engine&quot;: &quot;php&quot;,
+        &quot;file&quot;: &quot;scripts/hello.php&quot;,
+        &quot;fpm&quot;: &quot;unix:/run/php/php-fpm.sock&quot;,
+        &quot;params&quot;: {
+            &quot;name&quot;: &quot;World&quot;
+        }
+    }
+:}</code></pre></div>
+<p>Using <code>schema_data</code>:</p>
+<div class="example-wrap"><pre class="language-html"><code>{:obj;
+    {
+        &quot;file&quot;: &quot;scripts/data.py&quot;,
+        &quot;schema_data&quot;: &quot;__test-arr-nts&quot;
+    }
+:}
+
+{:obj;
+    {
+        &quot;file&quot;: &quot;scripts/data.py&quot;,
+        &quot;schema_data&quot;: &quot;__test-obj-nts-&gt;level1-obj&quot;
+    }
+:}
+
+{:obj;
+    {
+        &quot;file&quot;: &quot;scripts/data.py&quot;,
+        &quot;schema_data&quot;: &quot;local::array-&gt;text&quot;
+    }
+:}</code></pre></div>
+<p>Nested path examples:</p>
+<div class="example-wrap"><pre class="language-html"><code>{:obj;
+    {
+        &quot;file&quot;: &quot;scripts/data.py&quot;,
+        &quot;schema_data&quot;: &quot;__test-obj-nts-&gt;level1-obj-&gt;level2-obj-&gt;level2&quot;
+    }
+:}
+
+{:obj;
+    {
+        &quot;file&quot;: &quot;scripts/data.py&quot;,
+        &quot;schema_data&quot;: &quot;local::nested-obj-&gt;Lorem-&gt;Ipsum-&gt;Dolor-&gt;Sit-&gt;Amet&quot;
+    }
+:}</code></pre></div>
 <p>Using template with script output:</p>
 <div class="example-wrap"><pre class="language-html"><code>{:obj;
     {
@@ -96,6 +198,7 @@
     }
 :}</code></pre></div><h3 id="limitations"><a class="doc-anchor" href="#limitations">§</a>Limitations</h3>
 <p>Python is slow and executing Python as a subprocess is even slower, use “{:cache;” when possible.</p>
+<p>In practice, PHP via FPM is usually faster than Python for <code>obj</code> calls. PHP via FPM still adds socket overhead per call, so use “{:cache;” when possible.</p>
 <p>It is not the same to use “obj” to replace multiple variables than to, for example, create a complete form, in the first case performance will be affected until it is unacceptable, in the second case the loss is likely not noticeable.</p>
 <hr />
 </div></details></section></div></main></body></html>

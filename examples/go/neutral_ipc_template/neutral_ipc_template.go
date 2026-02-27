@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"net"
 	"time"
+
+	msgpack "github.com/vmihailenco/msgpack/v5"
 )
 
 // NeutralIpcRecord constants and methods.
@@ -17,6 +19,7 @@ const (
 	CtrlStatusOk      = 0
 	CtrlStatusKo      = 1
 	ContentJSON       = 10
+	ContentMsgpack    = 50
 	ContentPath       = 20
 	ContentText       = 30
 	ContentBin        = 40
@@ -56,14 +59,25 @@ func (r *NeutralIpcRecord) EncodeHeader() []byte {
 	return header
 }
 
-func (r *NeutralIpcRecord) EncodeRecord(control byte, format1 byte, content1 string, format2 byte, content2 string) []byte {
+func (r *NeutralIpcRecord) EncodeRecord(control byte, format1 byte, content1 interface{}, format2 byte, content2 string) []byte {
 	r.Control = control
 	r.Format1 = format1
-	r.Length1 = uint32(len(content1))
+
+	var content1Bytes []byte
+	switch c := content1.(type) {
+	case string:
+		content1Bytes = []byte(c)
+	case []byte:
+		content1Bytes = c
+	default:
+		content1Bytes = []byte(c.(string))
+	}
+
+	r.Length1 = uint32(len(content1Bytes))
 	r.Format2 = format2
 	r.Length2 = uint32(len(content2))
 	header := r.EncodeHeader()
-	return append(header, append([]byte(content1), []byte(content2)...)...)
+	return append(header, append(content1Bytes, []byte(content2)...)...)
 }
 
 func (r *NeutralIpcRecord) DecodeRecord(header []byte, content1, content2 string) map[string]interface{} {
@@ -174,30 +188,65 @@ func min(a, b int) int {
 
 // NeutralIpcTemplate is the main IPC template class.
 type NeutralIpcTemplate struct {
-	template string
-	tplType  byte
-	schema   string
-	result   map[string]interface{}
+	template   string
+	tplType    byte
+	schemaType byte
+	schema     interface{}
+	result     map[string]interface{}
 }
 
 func NewNeutralIpcTemplate(template string, schema interface{}) *NeutralIpcTemplate {
-	schemaStr := ""
-	if s, ok := schema.(string); ok {
-		schemaStr = s
-	} else if sch, ok := schema.(map[string]interface{}); ok {
-		data, _ := json.Marshal(sch)
-		schemaStr = string(data)
+	return NewNeutralIpcTemplateWithSchemaType(template, schema, ContentJSON)
+}
+
+func NewNeutralIpcTemplateWithSchemaType(template string, schema interface{}, schemaType byte) *NeutralIpcTemplate {
+	var schemaData interface{}
+
+	if schemaType == ContentMsgpack {
+		switch s := schema.(type) {
+		case string:
+			var parsed interface{}
+			if err := json.Unmarshal([]byte(s), &parsed); err == nil {
+				data, _ := msgpack.Marshal(parsed)
+				schemaData = data
+			} else {
+				schemaData = []byte{}
+			}
+		case map[string]interface{}:
+			data, _ := msgpack.Marshal(s)
+			schemaData = data
+		default:
+			schemaData = []byte{}
+		}
+	} else {
+		if s, ok := schema.(string); ok {
+			schemaData = s
+		} else if sch, ok := schema.(map[string]interface{}); ok {
+			data, _ := json.Marshal(sch)
+			schemaData = string(data)
+		}
 	}
 
 	return &NeutralIpcTemplate{
-		template: template,
-		tplType:  ContentPath,
-		schema:   schemaStr,
+		template:   template,
+		tplType:    ContentPath,
+		schemaType: schemaType,
+		schema:     schemaData,
 	}
 }
 
 func (t *NeutralIpcTemplate) Render() string {
-	client := NewNeutralIpcClient(CtrlParseTemplate, ContentJSON, t.schema, t.tplType, t.template)
+	var schemaStr string
+	switch s := t.schema.(type) {
+	case string:
+		schemaStr = s
+	case []byte:
+		schemaStr = string(s)
+	default:
+		schemaStr = ""
+	}
+
+	client := NewNeutralIpcClient(CtrlParseTemplate, t.schemaType, schemaStr, t.tplType, t.template)
 	result, err := client.Start()
 	if err != nil {
 		t.result = map[string]interface{}{"error": err.Error()}
@@ -244,6 +293,10 @@ func (t *NeutralIpcTemplate) SetSource(source string) {
 }
 
 func (t *NeutralIpcTemplate) MergeSchema(schema interface{}) {
+	if t.schemaType == ContentMsgpack {
+		return // Cannot merge msgpack schemas
+	}
+
 	schemaStr := ""
 	if s, ok := schema.(string); ok {
 		schemaStr = s
@@ -253,8 +306,13 @@ func (t *NeutralIpcTemplate) MergeSchema(schema interface{}) {
 	}
 
 	var current map[string]interface{}
-	if err := json.Unmarshal([]byte(t.schema), &current); err != nil {
-		t.result = map[string]interface{}{"error": "failed to unmarshal current schema: " + err.Error()}
+	switch s := t.schema.(type) {
+	case string:
+		if err := json.Unmarshal([]byte(s), &current); err != nil {
+			t.result = map[string]interface{}{"error": "failed to unmarshal current schema: " + err.Error()}
+			return
+		}
+	default:
 		return
 	}
 	var newSch map[string]interface{}

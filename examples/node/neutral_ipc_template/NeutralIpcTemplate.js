@@ -4,6 +4,7 @@
  */
 
 const net = require('net');
+// const msgpack = require('msgpack');
 const { HOST, PORT, TIMEOUT, BUFFER_SIZE } = require('./NeutralIpcConfig');
 
 class NeutralIpcRecord {
@@ -16,9 +17,9 @@ class NeutralIpcRecord {
     //
     // \x00              # reserved
     // \x00              # control (action/status) (10 = parse template)
-    // \x00              # content-format 1 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary)
+    // \x00              # content-format 1 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary, 50 = MsgPack)
     // \x00\x00\x00\x00  # content-length 1 big endian byte order
-    // \x00              # content-format 2 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary)
+    // \x00              # content-format 2 (10 = JSON, 20 = file path, 30 = plaintext, 40 = binary, 50 = MsgPack)
     // \x00\x00\x00\x00  # content-length 2 big endian byte order (can be zero)
     //
     // All text utf8
@@ -30,6 +31,7 @@ class NeutralIpcRecord {
     static CTRL_STATUS_OK = 0;
     static CTRL_STATUS_KO = 1;
     static CONTENT_JSON = 10;
+    static CONTENT_MSGPACK = 50;
     static CONTENT_PATH = 20;
     static CONTENT_TEXT = 30;
     static CONTENT_BIN = 40;
@@ -63,10 +65,15 @@ class NeutralIpcRecord {
     }
 
     static encodeRecord(control, format1, content1, format2, content2) {
-        const length1 = Buffer.byteLength(content1, 'utf8');
+        let content1Buf;
+        if (Buffer.isBuffer(content1)) {
+            content1Buf = content1;
+        } else {
+            content1Buf = Buffer.from(content1, 'utf8');
+        }
+        const length1 = content1Buf.length;
         const length2 = Buffer.byteLength(content2, 'utf8');
         const header = this.encodeHeader(control, format1, length1, format2, length2);
-        const content1Buf = Buffer.from(content1, 'utf8');
         const content2Buf = Buffer.from(content2, 'utf8');
         return Buffer.concat([header, content1Buf, content2Buf]);
     }
@@ -175,17 +182,22 @@ class NeutralIpcClient {
 }
 
 class NeutralIpcTemplate {
-    constructor(template, schema, tplType = NeutralIpcRecord.CONTENT_PATH) {
+    constructor(template, schema, tplType = NeutralIpcRecord.CONTENT_PATH, schemaType = NeutralIpcRecord.CONTENT_JSON) {
         this.template = template;
         this.tplType = tplType;
-        this.schema = typeof schema === 'object' ? JSON.stringify(schema) : schema;
+        this.schemaType = schemaType;
+        if (schemaType === NeutralIpcRecord.CONTENT_MSGPACK) {
+            this.schema = typeof schema === 'object' ? msgpack.pack(schema) : msgpack.pack(JSON.parse(schema));
+        } else {
+            this.schema = typeof schema === 'object' ? JSON.stringify(schema) : schema;
+        }
         this.result = {};
     }
 
     async render() {
         const record = new NeutralIpcClient(
             NeutralIpcRecord.CTRL_PARSE_TEMPLATE,
-            NeutralIpcRecord.CONTENT_JSON,
+            this.schemaType,
             this.schema,
             this.tplType,
             this.template

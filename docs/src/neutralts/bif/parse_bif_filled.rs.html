@@ -24,7 +24,7 @@
 <a href=#24 id=24 data-nosnippet>24</a>        <span class="kw">let </span><span class="kw-2">mut </span>schema = <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"data"</span>];
 <a href=#25 id=25 data-nosnippet>25</a>
 <a href=#26 id=26 data-nosnippet>26</a>        <span class="kw">if </span>varname.starts_with(<span class="string">"local::"</span>) {
-<a href=#27 id=27 data-nosnippet>27</a>            schema = <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"__indir"</span>][<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir][<span class="string">"data"</span>];
+<a href=#27 id=27 data-nosnippet>27</a>            schema = <span class="kw-2">&amp;</span><span class="self">self</span>.shared.get_indir(<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir)[<span class="string">"data"</span>];
 <a href=#28 id=28 data-nosnippet>28</a>            varname = varname.strip_prefix(<span class="string">"local::"</span>).unwrap_or(varname);
 <a href=#29 id=29 data-nosnippet>29</a>        }
 <a href=#30 id=30 data-nosnippet>30</a>

@@ -106,7 +106,7 @@
 <a href=#106 id=106 data-nosnippet>106</a>            .map(|schema_data_name| {
 <a href=#107 id=107 data-nosnippet>107</a>                <span class="kw">let </span>(schema_root, key_name) = <span class="kw">if </span>schema_data_name.starts_with(<span class="string">"local::"</span>) {
 <a href=#108 id=108 data-nosnippet>108</a>                    (
-<a href=#109 id=109 data-nosnippet>109</a>                        <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"__indir"</span>][<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir][<span class="string">"data"</span>],
+<a href=#109 id=109 data-nosnippet>109</a>                        <span class="kw-2">&amp;</span><span class="self">self</span>.shared.get_indir(<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir)[<span class="string">"data"</span>],
 <a href=#110 id=110 data-nosnippet>110</a>                        schema_data_name.strip_prefix(<span class="string">"local::"</span>).unwrap_or(<span class="string">""</span>),
 <a href=#111 id=111 data-nosnippet>111</a>                    )
 <a href=#112 id=112 data-nosnippet>112</a>                } <span class="kw">else </span>{

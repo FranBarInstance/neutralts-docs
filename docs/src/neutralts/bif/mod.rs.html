@@ -287,7 +287,7 @@
 <a href=#287 id=287 data-nosnippet>287</a>        <span class="kw">if </span>name.starts_with(<span class="string">"local::"</span>) {
 <a href=#288 id=288 data-nosnippet>288</a>            <span class="kw">let </span>local_name = name.strip_prefix(<span class="string">"local::"</span>).unwrap_or(name);
 <a href=#289 id=289 data-nosnippet>289</a>            get_from_key(
-<a href=#290 id=290 data-nosnippet>290</a>                <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"__indir"</span>][<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir][<span class="string">"data"</span>],
+<a href=#290 id=290 data-nosnippet>290</a>                <span class="kw-2">&amp;</span><span class="self">self</span>.shared.get_indir(<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir)[<span class="string">"data"</span>],
 <a href=#291 id=291 data-nosnippet>291</a>                local_name,
 <a href=#292 id=292 data-nosnippet>292</a>            )
 <a href=#293 id=293 data-nosnippet>293</a>        } <span class="kw">else </span>{
@@ -326,7 +326,7 @@
 <a href=#326 id=326 data-nosnippet>326</a>    // }
 <a href=#327 id=327 data-nosnippet>327</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_trans(<span class="kw-2">&amp;</span><span class="self">self</span>, text: <span class="kw-2">&amp;</span>str) -&gt; String {
 <a href=#328 id=328 data-nosnippet>328</a>        get_from_key(
-<a href=#329 id=329 data-nosnippet>329</a>            <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"__indir"</span>][<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir][<span class="string">"locale"</span>][<span class="string">"trans"</span>]
+<a href=#329 id=329 data-nosnippet>329</a>            <span class="kw-2">&amp;</span><span class="self">self</span>.shared.get_indir(<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir)[<span class="string">"locale"</span>][<span class="string">"trans"</span>]
 <a href=#330 id=330 data-nosnippet>330</a>                [<span class="kw-2">&amp;</span><span class="self">self</span>.shared.lang],
 <a href=#331 id=331 data-nosnippet>331</a>            text,
 <a href=#332 id=332 data-nosnippet>332</a>        )

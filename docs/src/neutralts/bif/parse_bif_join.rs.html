@@ -40,7 +40,7 @@
 <a href=#40 id=40 data-nosnippet>40</a>        array_name = array_name.replace(BIF_ARRAY, <span class="string">"/"</span>);
 <a href=#41 id=41 data-nosnippet>41</a>        <span class="kw">if </span>array_name.starts_with(<span class="string">"/local::"</span>) {
 <a href=#42 id=42 data-nosnippet>42</a>            array_name = array_name.replace(<span class="string">"/local::"</span>, <span class="string">"/"</span>);
-<a href=#43 id=43 data-nosnippet>43</a>            data_storage = <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"__indir"</span>][<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir][<span class="string">"data"</span>];
+<a href=#43 id=43 data-nosnippet>43</a>            data_storage = <span class="kw-2">&amp;</span><span class="self">self</span>.shared.get_indir(<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir)[<span class="string">"data"</span>];
 <a href=#44 id=44 data-nosnippet>44</a>        } <span class="kw">else </span>{
 <a href=#45 id=45 data-nosnippet>45</a>            data_storage = <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"data"</span>];
 <a href=#46 id=46 data-nosnippet>46</a>        }

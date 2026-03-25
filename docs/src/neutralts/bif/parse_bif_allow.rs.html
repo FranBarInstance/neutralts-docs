@@ -15,7 +15,7 @@
 <a href=#15 id=15 data-nosnippet>15</a>        <span class="self">self</span>.extract_params_code(<span class="bool-val">true</span>);
 <a href=#16 id=16 data-nosnippet>16</a>        <span class="kw">let </span><span class="kw-2">mut </span>found = String::new();
 <a href=#17 id=17 data-nosnippet>17</a>        <span class="kw">let </span>words_string = get_from_key(
-<a href=#18 id=18 data-nosnippet>18</a>            <span class="kw-2">&amp;</span><span class="self">self</span>.shared.schema[<span class="string">"__indir"</span>][<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir][<span class="string">"declare"</span>],
+<a href=#18 id=18 data-nosnippet>18</a>            <span class="kw-2">&amp;</span><span class="self">self</span>.shared.get_indir(<span class="kw-2">&amp;</span><span class="self">self</span>.inherit.indir)[<span class="string">"declare"</span>],
 <a href=#19 id=19 data-nosnippet>19</a>            <span class="kw-2">&amp;</span><span class="self">self</span>.params,
 <a href=#20 id=20 data-nosnippet>20</a>        );
 <a href=#21 id=21 data-nosnippet>21</a>
